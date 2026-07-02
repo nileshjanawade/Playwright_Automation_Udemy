@@ -29,7 +29,8 @@ Playwright-Automation/
 │   ├── OtherRahulsheetyAcademy.spec.js
 │   ├── llc.spec.js
 │   ├── moreValidations.spec.js
-│   └── calender.spec.js
+│   ├── calender.spec.js
+│   └── webApiPart1.spec.js
 ├── playwright-report/    # Generated HTML reports (gitignored)
 ├── test-results/         # Test artifacts / screenshots (gitignored)
 ├── playwright.config.js  # Playwright configuration
@@ -101,13 +102,13 @@ npx playwright show-report
 | **iFrames** — `page.frameLocator()` | `moreValidations.spec.js` |
 | **Calendar / Date Picker** — month, year, date navigation | `calender.spec.js` |
 | **End-to-End E-Commerce Flow** — login, product selection, cart, checkout, order verification | `rahulsheetyAcademy.spec.js`, `OtherRahulsheetyAcademy.spec.js` |
+| **API Testing** — `request.newContext()`, `apiContext.post()`, token-based auth | `webApiPart1.spec.js` |
 | **Screenshots & Traces** — automatic capture on failure | `playwright.config.js` |
 | **CI Integration** — GitHub Actions workflow | `.github/workflows/playwright.yml` |
 
 ### Planned Next Steps
 
 - Page Object Model (POM) — abstract page interactions into reusable classes
-- API testing — Playwright's `APIRequestContext`
 - Fixtures — custom data-driven fixtures
 - Visual regression testing
 - Authentication state reuse
