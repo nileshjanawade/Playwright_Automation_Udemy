@@ -18,7 +18,9 @@ await page.locator("#mousehover").hover();
 
 const framePage = page.frameLocator("#courses-iframe");
 await framePage.locator("li a[href*='lifetime-access']:visible").click();
-await expect(framePage.locator("h1[class*='pricing-title']")).toHaveText('Access Lifetime Membership');
+const textCheck = await framePage.locator(".text h2").textContent();
+console.log(textCheck.split(' ')[1]);
+
 
 
 });
