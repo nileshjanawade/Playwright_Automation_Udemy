@@ -11,34 +11,34 @@ A hands-on learning project exploring end-to-end test automation with [Playwrigh
 | [Playwright](https://playwright.dev/) | ^1.61.0 |
 | [@playwright/test](https://www.npmjs.com/package/@playwright/test) | ^1.61.0 |
 | Language | JavaScript (CommonJS) |
-| Test Runner | Playwright Test (built-in) |
-| CI | GitHub Actions (push / PR on `main` / `master`) |
+| Test Runner | Playwright Test |
+| CI | GitHub Actions |
 | Reporting | Playwright HTML Reporter |
 
 ---
 
 ## Folder Structure
 
-```
+```text
 Playwright-Automation/
-├── .github/workflows/    # GitHub Actions CI pipeline
-│   └── playwright.yml
-├── tests/                # All test specs
-│   ├── UIBasicstest.spec.js
-│   ├── rahulsheetyAcademy.spec.js
-│   ├── OtherRahulsheetyAcademy.spec.js
-│   ├── llc.spec.js
-│   ├── moreValidations.spec.js
-│   ├── calender.spec.js
-│   ├── webApiPart1.spec.js
-│   ├── RefactorWebAPI.spec.js
-│   └── utils/            # Reusable utility/helper classes
-│       └── APIUtils.js
-├── playwright-report/    # Generated HTML reports (gitignored)
-├── test-results/         # Test artifacts / screenshots (gitignored)
-├── playwright.config.js  # Playwright configuration
-├── package.json
-└── .gitignore
+|-- .github/workflows/    # GitHub Actions CI pipeline
+|   `-- playwright.yml
+|-- tests/                # All test specs
+|   |-- UIBasicstest.spec.js
+|   |-- rahulsheetyAcademy.spec.js
+|   |-- OtherRahulsheetyAcademy.spec.js
+|   |-- llc.spec.js
+|   |-- moreValidations.spec.js
+|   |-- calender.spec.js
+|   |-- webApiPart1.spec.js
+|   |-- RefactorWebAPI.spec.js
+|   `-- utils/            # Reusable utility/helper classes
+|       `-- APIUtils.js
+|-- playwright-report/    # Generated HTML reports (gitignored)
+|-- test-results/         # Test artifacts / screenshots (gitignored)
+|-- playwright.config.js  # Playwright configuration
+|-- package.json
+`-- .gitignore
 ```
 
 ---
@@ -48,12 +48,12 @@ Playwright-Automation/
 ```bash
 # 1. Clone the repo
 git clone https://github.com/nileshjanawade/Playwright_Automation_Udemy.git
-cd Playwright-Automation
+cd Playwright_Automation_Udemy
 
 # 2. Install dependencies
 npm install
 
-# 3. Install Playwright browsers (Chromium, Firefox, WebKit)
+# 3. Install Playwright browsers
 npx playwright install
 ```
 
@@ -62,30 +62,31 @@ npx playwright install
 ## How to Run Tests
 
 ```bash
-# Run all tests (Chromium, headed mode - configured in playwright.config.js)
+# Run all tests
 npx playwright test
 
 # Run a specific test file
 npx playwright test tests/UIBasicstest.spec.js
 
-# Run tests in headed mode (config already sets headless: false)
+# Run API tests
+npx playwright test tests/webApiPart1.spec.js
+npx playwright test tests/RefactorWebAPI.spec.js
+
+# Run tests in headed mode
 npx playwright test --headed
 
 # Run tests in a specific browser
 npx playwright test --browser=firefox
 npx playwright test --browser=webkit
 
-# Run tests across multiple browsers
-npx playwright test --browser=all
-
-# Run tests with UI mode (interactive Test Runner)
+# Run tests with UI mode
 npx playwright test --ui
 
 # Show the last HTML report
 npx playwright show-report
 ```
 
-> **Note:** The config defaults to `headless: false` and `browserName: chromium`. Screenshots are captured on every step (`screenshot: 'on'`), and traces are kept on failure (`trace: 'retain-on-failure'`).
+> Note: The config currently defaults to Chromium with `headless: false`. Screenshots are captured with `screenshot: 'on'`, and traces are kept on failure with `trace: 'retain-on-failure'`.
 
 ---
 
@@ -95,28 +96,48 @@ npx playwright show-report
 
 | Concept | Files |
 |---|---|
-| **Locators** — CSS, XPath, Playwright getBy\* (role, label, placeholder, text) | `UIBasicstest.spec.js`, `llc.spec.js`, `OtherRahulsheetyAcademy.spec.js` |
-| **Browser Context & Pages** — `browser.newContext()`, `context.newPage()` | `UIBasicstest.spec.js` |
-| **Form Interactions** — `fill()` vs `type()`, dropdowns, radio buttons, checkboxes | `UIBasicstest.spec.js` |
-| **Assertions** — `toContainText`, `toBeVisible`, `toBeHidden`, `toBeChecked`, `isChecked`, `toHaveAttribute`, `toHaveText` | `UIBasicstest.spec.js`, `moreValidations.spec.js`, `rahulsheetyAcademy.spec.js` |
-| **Child Window Handling** — `context.waitForEvent('page')` | `UIBasicstest.spec.js` |
-| **Dialog Handling** — `page.on('dialog', ...)` | `moreValidations.spec.js` |
-| **Mouse Hover** — `page.locator().hover()` | `moreValidations.spec.js` |
-| **iFrames** — `page.frameLocator()` | `moreValidations.spec.js` |
-| **Calendar / Date Picker** — month, year, date navigation | `calender.spec.js` |
-| **End-to-End E-Commerce Flow** — login, product selection, cart, checkout, order verification | `rahulsheetyAcademy.spec.js`, `OtherRahulsheetyAcademy.spec.js` |
-| **API Testing** — `request.newContext()`, `apiContext.post()`, token-based auth, order creation via API | `webApiPart1.spec.js` |
-| **Hooks & Token Injection** — `test.beforeAll`, `page.addInitScript()` for localStorage auth bypass | `webApiPart1.spec.js` |
-| **Page Object Model (POM)** — reusable utility classes (`APIUtils`) encapsulating API workflows | `RefactorWebAPI.spec.js`, `utils/APIUtils.js` |
-| **Screenshots & Traces** — automatic capture on failure | `playwright.config.js` |
-| **CI Integration** — GitHub Actions workflow | `.github/workflows/playwright.yml` |
+| **Locators** - CSS, XPath, Playwright getBy\* locators | `UIBasicstest.spec.js`, `llc.spec.js`, `OtherRahulsheetyAcademy.spec.js` |
+| **Browser Context & Pages** - `browser.newContext()`, `context.newPage()` | `UIBasicstest.spec.js` |
+| **Form Interactions** - `fill()` vs `type()`, dropdowns, radio buttons, checkboxes | `UIBasicstest.spec.js` |
+| **Assertions** - visibility, text, attributes, checkbox state | `UIBasicstest.spec.js`, `moreValidations.spec.js`, `rahulsheetyAcademy.spec.js` |
+| **Child Window Handling** - `context.waitForEvent('page')` | `UIBasicstest.spec.js` |
+| **Dialog Handling** - `page.on('dialog', ...)` | `moreValidations.spec.js` |
+| **Mouse Hover** - `page.locator().hover()` | `moreValidations.spec.js` |
+| **iFrames** - `page.frameLocator()` | `moreValidations.spec.js` |
+| **Calendar / Date Picker** - month, year, date navigation | `calender.spec.js` |
+| **End-to-End E-Commerce Flow** - login, product selection, cart, checkout, order verification | `rahulsheetyAcademy.spec.js`, `OtherRahulsheetyAcademy.spec.js` |
+| **API Testing** - `request.newContext()`, `apiContext.post()`, token auth, order creation | `webApiPart1.spec.js` |
+| **Hooks & Token Injection** - `test.beforeAll`, `page.addInitScript()` for localStorage auth bypass | `webApiPart1.spec.js` |
+| **Page Object Model (POM)** - reusable utility classes for API workflows | `RefactorWebAPI.spec.js`, `utils/APIUtils.js` |
+| **Screenshots & Traces** - automatic capture for debugging | `playwright.config.js` |
+| **CI Integration** - GitHub Actions workflow | `.github/workflows/playwright.yml` |
 
 ### Planned Next Steps
 
-- Fixtures — custom data-driven fixtures
+- Fixtures and data-driven tests
 - Visual regression testing
 - Authentication state reuse
-- Parallel execution & sharding
+- Parallel execution and sharding
+
+---
+
+## Troubleshooting
+
+### No tests found
+
+If Playwright shows `Error: No tests found`, check that:
+
+- The file path in the command matches an existing spec file.
+- The spec file contains at least one Playwright `test(...)` block.
+- The file name matches Playwright's default patterns, such as `*.spec.js` or `*.test.js`.
+
+Example:
+
+```bash
+npx playwright test tests/webApiPart1.spec.js
+```
+
+An empty file like `tests/WebApiPart2.spec.js` will be discovered by name, but Playwright will still report no tests because there is no test case inside it.
 
 ---
 
@@ -142,21 +163,19 @@ flowchart TD
 
 ## Reports & CI
 
-- **HTML reports** are generated automatically after every run in `playwright-report/`.
-- View the latest report: `npx playwright show-report`.
-- **GitHub Actions** runs all tests on every push / pull request to `main` / `master` and uploads the report as a CI artifact (retained for 30 days).
-- **Screenshots** are captured at every step (`screenshot: 'on'` in config).
-- **Traces** are recorded on test failure for debugging via Playwright Trace Viewer.
+- HTML reports are generated automatically in `playwright-report/`.
+- View the latest report with `npx playwright show-report`.
+- GitHub Actions runs tests on push and pull request.
+- Screenshots and traces are available for debugging failed tests.
 
 ---
 
 ## Learning Notes
 
-- This repo is intentionally kept simple — no abstractions or frameworks yet. It's a playground for understanding Playwright APIs step by step.
-- All tests target public demo sites (Rahul Shetty Academy, Path2USA, My Campus Forum) — no API keys or secrets required.
-- If you're new to Playwright, start with `UIBasicstest.spec.js` — it covers the most foundational concepts.
-- Compare `rahulsheetyAcademy.spec.js` (CSS locators) with `OtherRahulsheetyAcademy.spec.js` (getBy\* locators) to see different locator strategies for the same flow.
-- Feel free to fork, add your own tests, or refactor parts into a POM structure as a learning exercise.
+- This repo is intentionally simple, so it is easy to follow the Playwright APIs step by step.
+- All tests target public demo sites, including Rahul Shetty Academy, Path2USA, and My Campus Forum.
+- If you are new to Playwright, start with `UIBasicstest.spec.js`.
+- Compare `rahulsheetyAcademy.spec.js` with `OtherRahulsheetyAcademy.spec.js` to see different locator strategies for the same flow.
 
 ---
 
