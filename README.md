@@ -30,7 +30,10 @@ Playwright-Automation/
 │   ├── llc.spec.js
 │   ├── moreValidations.spec.js
 │   ├── calender.spec.js
-│   └── webApiPart1.spec.js
+│   ├── webApiPart1.spec.js
+│   ├── RefactorWebAPI.spec.js
+│   └── utils/            # Reusable utility/helper classes
+│       └── APIUtils.js
 ├── playwright-report/    # Generated HTML reports (gitignored)
 ├── test-results/         # Test artifacts / screenshots (gitignored)
 ├── playwright.config.js  # Playwright configuration
@@ -104,12 +107,12 @@ npx playwright show-report
 | **End-to-End E-Commerce Flow** — login, product selection, cart, checkout, order verification | `rahulsheetyAcademy.spec.js`, `OtherRahulsheetyAcademy.spec.js` |
 | **API Testing** — `request.newContext()`, `apiContext.post()`, token-based auth, order creation via API | `webApiPart1.spec.js` |
 | **Hooks & Token Injection** — `test.beforeAll`, `page.addInitScript()` for localStorage auth bypass | `webApiPart1.spec.js` |
+| **Page Object Model (POM)** — reusable utility classes (`APIUtils`) encapsulating API workflows | `RefactorWebAPI.spec.js`, `utils/APIUtils.js` |
 | **Screenshots & Traces** — automatic capture on failure | `playwright.config.js` |
 | **CI Integration** — GitHub Actions workflow | `.github/workflows/playwright.yml` |
 
 ### Planned Next Steps
 
-- Page Object Model (POM) — abstract page interactions into reusable classes
 - Fixtures — custom data-driven fixtures
 - Visual regression testing
 - Authentication state reuse
