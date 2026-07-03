@@ -1,8 +1,22 @@
+// Skipping login manually in every test.
+// Normally, a user logs in → the app generates a token → stores it in localStorage → user is "authenticated."
+// Instead of clicking through the login form every single test, you:
+
+// Get a valid token (from an API call or a saved test token)
+// Inject it directly into localStorage using addInitScript
+// When the page loads, the app sees the token already there and thinks: "This user is already logged in!"
+
 const {test, expect, request} = require('@playwright/test');
+
 const loginPayload = {userEmail: "neel.janawade@gmail.com", userPassword: "Neel@123"};
+const orderPayload = {orders: [{country: "Cuba", productOrderedId: "6960eae1c941646b7a8b3ed3"}]}
 let token;
+let orderId;
+
 test.beforeAll(async () => {
-    const apiContext = await request.newContext();
+    // beforeAll->A Playwright hook that runs once, 
+    // before all tests in this file — not before each individual test (that would be beforeEach)
+    const apiContext = await request.newContext();//Request->Playwright's built-in API testing tool — lets you make HTTP requests (GET, POST, etc.) directly, without opening a browser
     const loginResponse = await apiContext.post('https://rahulshettyacademy.com/api/ecom/auth/login', 
         
         {data: loginPayload});
@@ -12,66 +26,40 @@ const loginResponseJson = await loginResponse.json();
 token = loginResponseJson.token;
 console.log(token);
 
+const orderResponse = await apiContext.post('https://rahulshettyacademy.com/api/ecom/order/create-order',
+    {
+        data: orderPayload,
+        headers: {
+            'Authorization': token,
+            'Content-Type': 'application/json'
+        },
+    })
+    const orderResponseJson = await orderResponse.json();
+    console.log(orderResponseJson);
+    orderId = orderResponseJson.orders[0];
+    
 });
+
+test.beforeEach(()=>{
+
+})
+
 
 test('Rahul Shetty Academy login test', async ({page}) => 
 {
 
-    await page.addInitScript(value => {
-        window.localStorage.setItem('token', value);
+    await page.addInitScript(value => { 
+        //Injects JavaScript code into the page, which runs before the website's own scripts load
+        window.localStorage.setItem('token', value); // value)Saves data into the browser's localStorage with the key 'token' and the value passed in
 
-    }, token);// second argument is passed to the first argument function as value
+    }, token);//This is the actual data we're sending into the function. Whatever is stored in the token variable outside gets passed in as value inside the function
 
 const products = page.locator('.card-body');
 const productName =  'ZARA COAT 3';
-const email = 'neel.janawade9@yopmail.com';
+// const email = 'neel.janawade9@yopmail.com';
+const email = 'neel.janawade@gmail.com';
 
 await page.goto('https://rahulshettyacademy.com/client/');
-
-await page.locator('.card-body').first().waitFor();
-const titles = await page.locator('.card-body').allTextContents();
-console.log(titles);
-
-//ZARA Coat 3
-
-const count = await products.count();
-for(let i =0 ; i< count; ++i)
-    {
-        if (await products.nth(i).locator('b').textContent() === productName)
-        {
-            //add cart
-
-            await products.nth(i).locator('text= Add To Cart').click();
-            break;
-        }
-               
-    }
-
-    await page.locator("[routerlink='/dashboard/cart']").click();
-    await page.locator('div li').first().waitFor();
-    const bool = await page.locator("h3:has-text('ZARA COAT 3')").isVisible();
-    expect(bool).toBeTruthy();
-
-    await page.locator('text=Checkout').click();
-    await page.locator("[placeholder*='Country']").pressSequentially('ind');
-    const dropdown = page.locator('.ta-results');
-    await dropdown.waitFor();
-    const optionsCount = await dropdown.locator('button').count();
-    for (let i = 0; i < optionsCount; ++i)
-    {
-        const text = await dropdown.locator('button').nth(i).textContent();
-        if (text.trim() === 'India')
-        {
-            await dropdown.locator('button').nth(i).click();
-            break;
-        }
-    }
-
-    expect(await page.locator('.user__name [type="text"]').first()).toHaveText(email);
-    await page.locator('.action__submit').click();
-    expect (await page.locator('.hero-primary')).toHaveText(' Thankyou for the order. ');
-    const orderID =await page.locator('.em-spacer-1 .ng-star-inserted').textContent();
-    console.log(orderID);
 
     await page.locator("button[routerlink*='myorders']").click();
     await page.locator('tbody').waitFor();
@@ -82,7 +70,7 @@ for(let i =0 ; i< count; ++i)
     for ( let i = 0; i < await rows.count(); ++i)
     {
         const rowOrderID = await rows.nth(i).locator('th').textContent();
-        if (orderID.includes(rowOrderID))
+        if (orderId.includes(rowOrderID))
         {
             await rows.nth(i).locator('button').first().click();
             break;
@@ -90,7 +78,8 @@ for(let i =0 ; i< count; ++i)
 
     }
         const orderIdDetails = await page.locator('.col-text').textContent();
-        expect(orderID.includes(orderIdDetails)).toBeTruthy();
+        await page.pause();
+        expect(orderId.includes(orderIdDetails)).toBeTruthy();
 
 
 

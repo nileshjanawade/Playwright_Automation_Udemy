@@ -102,7 +102,8 @@ npx playwright show-report
 | **iFrames** — `page.frameLocator()` | `moreValidations.spec.js` |
 | **Calendar / Date Picker** — month, year, date navigation | `calender.spec.js` |
 | **End-to-End E-Commerce Flow** — login, product selection, cart, checkout, order verification | `rahulsheetyAcademy.spec.js`, `OtherRahulsheetyAcademy.spec.js` |
-| **API Testing** — `request.newContext()`, `apiContext.post()`, token-based auth | `webApiPart1.spec.js` |
+| **API Testing** — `request.newContext()`, `apiContext.post()`, token-based auth, order creation via API | `webApiPart1.spec.js` |
+| **Hooks & Token Injection** — `test.beforeAll`, `page.addInitScript()` for localStorage auth bypass | `webApiPart1.spec.js` |
 | **Screenshots & Traces** — automatic capture on failure | `playwright.config.js` |
 | **CI Integration** — GitHub Actions workflow | `.github/workflows/playwright.yml` |
 
