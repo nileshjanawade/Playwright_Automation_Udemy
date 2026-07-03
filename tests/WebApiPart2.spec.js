@@ -1,15 +1,16 @@
 const {test, expect} = require('@playwright/test');
 
-test.beforeAll(async(browser)=>
+test.beforeAll(async ({ browser }) =>
 {
 const context = await browser.newContext();
 const page = await context.newPage();
 await page.goto('https://rahulshettyacademy.com/client/#/auth/login');
-await page.locator('#userEmail').fill(email);
+await page.locator('#userEmail').fill('neel.janawade9@yopmail.com');
 await page.locator('#userPassword').fill('Neel@3694');
 await page.locator('#login').click();
-// await page.locator('.card-body').waitForLoadState('networkidle');
+await page.waitForLoadState('networkidle');
 await context.storageState({path: 'state.json'});
+// await context.close();
 
 })
 

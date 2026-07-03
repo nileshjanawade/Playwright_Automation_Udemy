@@ -31,6 +31,7 @@ Playwright-Automation/
 |   |-- moreValidations.spec.js
 |   |-- calender.spec.js
 |   |-- webApiPart1.spec.js
+|   |-- WebApiPart2.spec.js
 |   |-- RefactorWebAPI.spec.js
 |   `-- utils/            # Reusable utility/helper classes
 |       `-- APIUtils.js
@@ -108,6 +109,7 @@ npx playwright show-report
 | **End-to-End E-Commerce Flow** - login, product selection, cart, checkout, order verification | `rahulsheetyAcademy.spec.js`, `OtherRahulsheetyAcademy.spec.js` |
 | **API Testing** - `request.newContext()`, `apiContext.post()`, token auth, order creation | `webApiPart1.spec.js` |
 | **Hooks & Token Injection** - `test.beforeAll`, `page.addInitScript()` for localStorage auth bypass | `webApiPart1.spec.js` |
+| **Storage State** - `browser.newContext()`, `context.storageState()` for auth state persistence | `WebApiPart2.spec.js` |
 | **Page Object Model (POM)** - reusable utility classes for API workflows | `RefactorWebAPI.spec.js`, `utils/APIUtils.js` |
 | **Screenshots & Traces** - automatic capture for debugging | `playwright.config.js` |
 | **CI Integration** - GitHub Actions workflow | `.github/workflows/playwright.yml` |
@@ -116,7 +118,6 @@ npx playwright show-report
 
 - Fixtures and data-driven tests
 - Visual regression testing
-- Authentication state reuse
 - Parallel execution and sharding
 
 ---
@@ -137,7 +138,7 @@ Example:
 npx playwright test tests/webApiPart1.spec.js
 ```
 
-An empty file like `tests/WebApiPart2.spec.js` will be discovered by name, but Playwright will still report no tests because there is no test case inside it.
+An empty file like `tests/calender.spec.js` will be discovered by name, but Playwright will still report no tests because there is no test case inside it.
 
 ---
 
