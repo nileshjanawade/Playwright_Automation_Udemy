@@ -19,21 +19,24 @@ class APIUtils {
     }
 
     async createOrder(orderPayload) {
-        const response ={};
+        const response = {};
         response.token = await this.getToken();
         const orderResponse = await this.apiContext.post('https://rahulshettyacademy.com/api/ecom/order/create-order',
             {
                 data: orderPayload,
                 headers: {
-                    'Authorization':  response.token,
+                    'Authorization': response.token,
                     'Content-Type': 'application/json'
                 },
             })
-            const orderResponseJson = await orderResponse.json();
-            console.log(orderResponseJson);
-            const orderId = orderResponseJson.orders[0];
-            response.orderId = orderId;
-            return response;
+        const orderResponseJson = await orderResponse.json();
+        console.log(orderResponseJson);
+        if (!orderResponse.ok() || !orderResponseJson.orders) {
+            throw new Error(`Order creation failed: ${JSON.stringify(orderResponseJson)}`);
+        }
+        response.orderId = orderResponseJson.orders[0];
+        return response;
+    
     }
 }
 

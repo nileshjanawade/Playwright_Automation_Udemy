@@ -1,4 +1,5 @@
 const {test, expect} = require('@playwright/test');
+let webContext;
 
 test.beforeAll(async ({ browser }) =>
 {
@@ -10,19 +11,20 @@ await page.locator('#userPassword').fill('Neel@3694');
 await page.locator('#login').click();
 await page.waitForLoadState('networkidle');
 await context.storageState({path: 'state.json'});
-// await context.close();
+webContext = await browser.newContext({storageState:'state.json'});
 
 })
 
 
-test('Rahul Shetty Academy login test', async ({page}) => 
+test('Rahul Shetty Academy login test', async () => 
 {
 
-const products = page.locator('.card-body');
 const productName =  'ZARA COAT 3';
-const email = 'neel.janawade9@yopmail.com';
+const email = "neel.janawade9@yopmail.com";
 
-
+const page = await webContext.newPage();
+await page.goto("https://rahulshettyacademy.com/client");
+const products = page.locator('.card-body');
 
 await page.locator('.card-body').first().waitFor();
 
@@ -84,7 +86,6 @@ for(let i =0 ; i< count; ++i)
             await rows.nth(i).locator('button').first().click();
             break;
         }
-
     }
         const orderIdDetails = await page.locator('.col-text').textContent();
         expect(orderID.includes(orderIdDetails)).toBeTruthy();

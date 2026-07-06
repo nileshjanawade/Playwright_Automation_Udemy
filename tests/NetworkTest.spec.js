@@ -1,9 +1,10 @@
 
 const {test, expect, request} = require('@playwright/test');
 const {APIUtils} = require('./utils/APIUtils');
-const loginPayload = {userEmail: "neel.janawade@gmail.com", userPassword: "Neel@123"};
+const loginPayload = {userEmail: "neel.janawade9@yopmail.com", userPassword: "Neel@123"};
 const orderPayload = {orders: [{country: "Cuba", productOrderedId: "6960eae1c941646b7a8b3ed3"}]}
 let response;
+const fakePayloadOrders = {data:[], message:"No Orders"};
 
 test.beforeAll(async () => 
 {
@@ -31,29 +32,26 @@ const email = 'neel.janawade@gmail.com';
 
 await page.goto('https://rahulshettyacademy.com/client/');
 
-    await page.locator("button[routerlink*='myorders']").click();
-    await page.locator('tbody').waitFor();
+await page.route("https://rahulshettyacademy.com/api/ecom/order/get-orders-for-customer/6a4241db378febeacdd7bfb2",
 
-    const rows = page.locator('tbody tr');
-
-
-    for ( let i = 0; i < await rows.count(); ++i)
+    async route=>
     {
-        const rowOrderID = await rows.nth(i).locator('th').textContent();
-        if (response.orderId.includes(rowOrderID))
-        {
-            await rows.nth(i).locator('button').first().click();
-            break;
-        }
-
+        const response = await page.request.fetch(route.request()); 
+        let body = JSON.stringify(fakePayloadOrders);//send the response back to browser then it will automatically render on the fromt end 
+        route.fulfill(
+            {
+                response,
+                body,
+            }
+        ) 
+        //intercpting the response - API response->!!!{PW  fakeresponse}->browser->render data on frontend
     }
-        const orderIdDetails = await page.locator('.col-text').textContent();
+);
 
-        expect(response.orderId.includes(orderIdDetails)).toBeTruthy();
+await page.locator("button[routerlink*='myorders']").click();
+await page.pause();
+await page.locator('tbody').waitFor();
 
-
-
-// await page.pause();
-
+const rows = page.locator('tbody tr');
 
 });

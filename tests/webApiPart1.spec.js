@@ -14,7 +14,7 @@ let token;
 let orderId;
 
 test.beforeAll(async () => {
-    // beforeAll->A Playwright hook that runs once, 
+    // beforeAll->A Playwright hook that pruns once, 
     // before all tests in this file — not before each individual test (that would be beforeEach)
     const apiContext = await request.newContext();//Request->Playwright's built-in API testing tool — lets you make HTTP requests (GET, POST, etc.) directly, without opening a browser
     const loginResponse = await apiContext.post('https://rahulshettyacademy.com/api/ecom/auth/login', 

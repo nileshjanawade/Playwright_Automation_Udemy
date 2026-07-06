@@ -33,6 +33,8 @@ Playwright-Automation/
 |   |-- webApiPart1.spec.js
 |   |-- WebApiPart2.spec.js
 |   |-- RefactorWebAPI.spec.js
+|   |-- NetworkTest.spec.js
+|   |-- NetworkTest2.spec.js
 |   `-- utils/            # Reusable utility/helper classes
 |       `-- APIUtils.js
 |-- playwright-report/    # Generated HTML reports (gitignored)
@@ -87,7 +89,7 @@ npx playwright test --ui
 npx playwright show-report
 ```
 
-> Note: The config currently defaults to Chromium with `headless: false`. Screenshots are captured with `screenshot: 'on'`, and traces are kept on failure with `trace: 'retain-on-failure'`.
+> Note: The config currently defaults to Chromium with `headless: false`. Screenshots are captured with `screenshot: 'on'`, and traces are captured with `trace: 'on'`.
 
 ---
 
@@ -111,6 +113,10 @@ npx playwright show-report
 | **Hooks & Token Injection** - `test.beforeAll`, `page.addInitScript()` for localStorage auth bypass | `webApiPart1.spec.js` |
 | **Storage State** - `browser.newContext()`, `context.storageState()` for auth state persistence | `WebApiPart2.spec.js` |
 | **Page Object Model (POM)** - reusable utility classes for API workflows | `RefactorWebAPI.spec.js`, `utils/APIUtils.js` |
+| **API Error Handling** - response status checks and descriptive error handling | `utils/APIUtils.js` |
+| **Network Route Interception** - `page.route()` to intercept and modify API responses | `NetworkTest.spec.js`, `NetworkTest2.spec.js` |
+| **Request Mocking** - `route.fulfill()` with fake response payloads | `NetworkTest.spec.js` |
+| **Security Testing** - URL manipulation in intercepted routes to test authorization | `NetworkTest2.spec.js` |
 | **Screenshots & Traces** - automatic capture for debugging | `playwright.config.js` |
 | **CI Integration** - GitHub Actions workflow | `.github/workflows/playwright.yml` |
 

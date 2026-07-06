@@ -25,6 +25,7 @@ await page.locator('#userEmail').fill(email);
 await page.locator('#userPassword').fill('Neel@3694');
 await page.locator('#login').click();
 
+
 // await page.locator('.card-body').waitForLoadState('networkidle');
 await page.locator('.card-body').first().waitFor();
 
