@@ -117,13 +117,17 @@ npx playwright show-report
 | **Network Route Interception** - `page.route()` to intercept and modify API responses | `NetworkTest.spec.js`, `NetworkTest2.spec.js` |
 | **Request Mocking** - `route.fulfill()` with fake response payloads | `NetworkTest.spec.js` |
 | **Security Testing** - URL manipulation in intercepted routes to test authorization | `NetworkTest2.spec.js` |
+| **Route Blocking** - `route.abort()` to block CSS, images, etc. | `rahulsheetyAcademy.spec.js`, `UIBasicstest.spec.js` |
+| **Network Event Logging** - `page.on('request')` and `page.on('response')` to monitor traffic | `rahulsheetyAcademy.spec.js` |
+| **Element Screenshots** - `locator.screenshot()` for partial captures | `moreValidations.spec.js` |
+| **Full Page Screenshots** - `page.screenshot()` for full-page captures | `moreValidations.spec.js` |
+| **Visual Regression Testing** - `toMatchSnapshot()` for pixel comparison | `moreValidations.spec.js` |
 | **Screenshots & Traces** - automatic capture for debugging | `playwright.config.js` |
 | **CI Integration** - GitHub Actions workflow | `.github/workflows/playwright.yml` |
 
 ### Planned Next Steps
 
 - Fixtures and data-driven tests
-- Visual regression testing
 - Parallel execution and sharding
 
 ---

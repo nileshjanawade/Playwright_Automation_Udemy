@@ -1,8 +1,10 @@
 const {test, expect} = require('@playwright/test');
+const { request } = require('node:http');
 
 test('Rahul Shetty Academy login test', async ({page}) => 
 {
 await page.goto('https://rahulshettyacademy.com/client/#/auth/login');
+page.route('**/*.{jpg,png,jpeg}',route=> route.abort());
 
 // await page.locator('.text-reset').click();
 // await page.locator('#firstName').fill('Nilesh');
@@ -32,6 +34,8 @@ await page.locator('.card-body').first().waitFor();
 const titles = await page.locator('.card-body').allTextContents();
 console.log(titles);
 
+page.on('request',request=> console.log(request.url()));
+page.on('response', response=>console.log(response.url(), response.status()));
 //ZARA Coat 3
 
 const count = await products.count();

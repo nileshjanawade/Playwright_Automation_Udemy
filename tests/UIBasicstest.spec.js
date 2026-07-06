@@ -19,6 +19,8 @@ test('Page Playwright test', async ({page}) =>
     const signInButton = page.locator('#signInBtn');
     const cardTitles = page.locator('.card-body a');
 
+    // page.route('**/*.css',route=> route.abort());
+    // page.route('**/*.{jpg,png,jpeg}',route=> route.abort());
   await page.goto('https://rahulshettyacademy.com/loginpagePractise/');
   console.log(await page.title());
    await expect(page).toHaveTitle("LoginPage Practise | Rahul Shetty Academy");
