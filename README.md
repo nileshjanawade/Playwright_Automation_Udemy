@@ -35,6 +35,7 @@ Playwright-Automation/
 |   |-- RefactorWebAPI.spec.js
 |   |-- NetworkTest.spec.js
 |   |-- NetworkTest2.spec.js
+|   |-- upoad-download.spec.js
 |   `-- utils/            # Reusable utility/helper classes
 |       `-- APIUtils.js
 |-- playwright-report/    # Generated HTML reports (gitignored)
@@ -123,6 +124,7 @@ npx playwright show-report
 | **Full Page Screenshots** - `page.screenshot()` for full-page captures | `moreValidations.spec.js` |
 | **Visual Regression Testing** - `toMatchSnapshot()` for pixel comparison | `moreValidations.spec.js` |
 | **Screenshots & Traces** - automatic capture for debugging | `playwright.config.js` |
+| **File Upload/Download with Excel** - `page.waitForEvent('download')`, `setInputFiles()`, Excel read/write with `exceljs` | `upoad-download.spec.js` |
 | **CI Integration** - GitHub Actions workflow | `.github/workflows/playwright.yml` |
 
 ### Planned Next Steps
