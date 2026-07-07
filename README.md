@@ -25,6 +25,7 @@ Playwright-Automation/
 |   `-- playwright.yml
 |-- tests/                # All test specs
 |   |-- UIBasicstest.spec.js
+|   |-- clientAppPO.spec.js
 |   |-- rahulsheetyAcademy.spec.js
 |   |-- OtherRahulsheetyAcademy.spec.js
 |   |-- llc.spec.js
@@ -38,6 +39,9 @@ Playwright-Automation/
 |   |-- upoad-download.spec.js
 |   `-- utils/            # Reusable utility/helper classes
 |       `-- APIUtils.js
+|-- pageobjects/          # Reusable UI page object classes
+|   |-- LoginPage.js
+|   `-- DashBoardPage.js
 |-- playwright-report/    # Generated HTML reports (gitignored)
 |-- test-results/         # Test artifacts / screenshots (gitignored)
 |-- playwright.config.js  # Playwright configuration
@@ -71,6 +75,9 @@ npx playwright test
 
 # Run a specific test file
 npx playwright test tests/UIBasicstest.spec.js
+
+# Run the Page Object Model e-commerce flow
+npx playwright test tests/clientAppPO.spec.js
 
 # Run API tests
 npx playwright test tests/webApiPart1.spec.js
@@ -110,10 +117,11 @@ npx playwright show-report
 | **iFrames** - `page.frameLocator()` | `moreValidations.spec.js` |
 | **Calendar / Date Picker** - month, year, date navigation | `calender.spec.js` |
 | **End-to-End E-Commerce Flow** - login, product selection, cart, checkout, order verification | `rahulsheetyAcademy.spec.js`, `OtherRahulsheetyAcademy.spec.js` |
+| **UI Page Object Model (POM)** - reusable login and dashboard page classes for the e-commerce client app | `clientAppPO.spec.js`, `pageobjects/LoginPage.js`, `pageobjects/DashBoardPage.js` |
 | **API Testing** - `request.newContext()`, `apiContext.post()`, token auth, order creation | `webApiPart1.spec.js` |
 | **Hooks & Token Injection** - `test.beforeAll`, `page.addInitScript()` for localStorage auth bypass | `webApiPart1.spec.js` |
 | **Storage State** - `browser.newContext()`, `context.storageState()` for auth state persistence | `WebApiPart2.spec.js` |
-| **Page Object Model (POM)** - reusable utility classes for API workflows | `RefactorWebAPI.spec.js`, `utils/APIUtils.js` |
+| **API Utility Refactor** - reusable utility classes for API workflows | `RefactorWebAPI.spec.js`, `utils/APIUtils.js` |
 | **API Error Handling** - response status checks and descriptive error handling | `utils/APIUtils.js` |
 | **Network Route Interception** - `page.route()` to intercept and modify API responses | `NetworkTest.spec.js`, `NetworkTest2.spec.js` |
 | **Request Mocking** - `route.fulfill()` with fake response payloads | `NetworkTest.spec.js` |

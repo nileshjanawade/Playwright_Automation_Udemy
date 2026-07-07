@@ -1,15 +1,15 @@
 const {test,expect} = require('@playwright/test');
 
-test('Brower context Playwright test', async ({browser}) =>
-{
+// test('Brower context Playwright test', async ({browser}) =>
+// {
     
-  const context = await browser.newContext();
-  const page =await context.newPage();
-  await page.goto('https://mycampusforum.com/');
-  console.log(await page.title());
-//   expect(page).toHaveTitle("My Campus Forum — AI-Powered Alumni Network Platform");
+//   const context = await browser.newContext();
+//   const page =await context.newPage();
+//   await page.goto('https://mycampusforum.com/');
+//   console.log(await page.title());
+// //   expect(page).toHaveTitle("My Campus Forum — AI-Powered Alumni Network Platform");
 
-});
+// });
 
 test('Page Playwright test', async ({page}) =>
 {
