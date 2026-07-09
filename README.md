@@ -13,7 +13,7 @@ A hands-on learning project exploring end-to-end test automation with [Playwrigh
 | Language | JavaScript (CommonJS) |
 | Test Runner | Playwright Test |
 | CI | GitHub Actions |
-| Reporting | Playwright HTML Reporter |
+| Reporting | Playwright HTML Reporter, Allure Reporter |
 
 ---
 
@@ -59,6 +59,8 @@ Playwright-Automation/
 |   |-- test-base.js
 |   `-- placeOrderTestData.json
 |-- playwright-report/    # Generated HTML reports (gitignored)
+|-- allure-results/       # Generated Allure result files (gitignored)
+|-- allure-report/        # Generated Allure HTML report (gitignored)
 |-- test-results/         # Test artifacts / screenshots (gitignored)
 |-- playwright.config.js  # Playwright configuration
 |-- playwright.config1.js # Optional multi-project Playwright configuration
@@ -120,6 +122,10 @@ npx playwright test tests/OtherRahulsheetyAcademy.spec.js --config playwright.co
 
 # Show the last HTML report
 npx playwright show-report
+
+# Generate and open an Allure report
+npx allure-commandline generate ./allure-results --clean
+npx allure-commandline open ./allure-report
 ```
 
 > Note: The config currently defaults to Chromium with `headless: false`. Screenshots are captured with `screenshot: 'on'`, and traces are captured with `trace: 'on'`.
@@ -159,6 +165,7 @@ npx playwright show-report
 | **Full Page Screenshots** - `page.screenshot()` for full-page captures | `moreValidations.spec.js` |
 | **Visual Regression Testing** - `toMatchSnapshot()` for pixel comparison | `moreValidations.spec.js` |
 | **Screenshots & Traces** - automatic capture for debugging | `playwright.config.js` |
+| **Allure Reporting** - Allure result generation with the Playwright reporter | `playwright.config.js`, `package.json` |
 | **Multi-Project Configuration** - browser projects, retries, workers, permissions, and HTTPS handling | `playwright.config1.js` |
 | **File Upload/Download with Excel** - `page.waitForEvent('download')`, `setInputFiles()`, Excel read/write with `exceljs` | `upoad-download.spec.js` |
 | **CI Integration** - GitHub Actions workflow | `.github/workflows/playwright.yml` |
@@ -214,6 +221,9 @@ flowchart TD
 
 - HTML reports are generated automatically in `playwright-report/`.
 - View the latest report with `npx playwright show-report`.
+- Allure result files are generated in `allure-results/` when tests run.
+- Generate the Allure HTML report with `npx allure-commandline generate ./allure-results --clean`.
+- Open the Allure report with `npx allure-commandline open ./allure-report`.
 - GitHub Actions runs tests on push and pull request.
 - Screenshots and traces are available for debugging failed tests.
 

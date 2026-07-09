@@ -38,25 +38,25 @@ for(const data of dataset)
  });
 
 
-customtest.skip("base Client App login scenarios 1", async({page,testDataForOrder})=>
- {
-   const poManager = new POManager(page);
-    //js file- Login js, DashboardPage
-    //  const username = "neel.janawade9@yopmail.com";
-    //  const password = "Neel@3694"
-    //  const productName = 'Zara Coat 3';
-     const products = page.locator(".card-body");
-     const loginPage = poManager.getLoginPage();
-     await loginPage.goTo();
-     await loginPage.validLogin(testDataForOrder.username,testDataForOrder.password);
-     const dashboardPage = poManager.getDashboardPage();
-     await dashboardPage.searchProductAddCart(testDataForOrder.productname);
-     await dashboardPage.navigateToCart();
+// customtest.skip("base Client App login scenarios 1", async({page,testDataForOrder})=>
+//  {
+//    const poManager = new POManager(page);
+//     //js file- Login js, DashboardPage
+//     //  const username = "neel.janawade9@yopmail.com";
+//     //  const password = "Neel@3694"
+//     //  const productName = 'Zara Coat 3';
+//      const products = page.locator(".card-body");
+//      const loginPage = poManager.getLoginPage();
+//      await loginPage.goTo();
+//      await loginPage.validLogin(testDataForOrder.username,testDataForOrder.password);
+//      const dashboardPage = poManager.getDashboardPage();
+//      await dashboardPage.searchProductAddCart(testDataForOrder.productname);
+//      await dashboardPage.navigateToCart();
 
-    const cartPage = poManager.getCartPage();
-    await cartPage.VerifyProductIsDisplayed(testDataForOrder.productname);
-    await cartPage.Checkout();
- });
+//     const cartPage = poManager.getCartPage();
+//     await cartPage.VerifyProductIsDisplayed(testDataForOrder.productname);
+//     await cartPage.Checkout();
+//  });
  
 }
  

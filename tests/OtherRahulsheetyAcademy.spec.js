@@ -1,6 +1,6 @@
 const {test, expect} = require('@playwright/test');
 
-test('@Web Rahul Shetty Academy login test', async ({page}) => 
+test('@web Rahul Shetty Academy login test', async ({page}) => 
 {
 await page.goto('https://rahulshettyacademy.com/client/#/auth/login');
 

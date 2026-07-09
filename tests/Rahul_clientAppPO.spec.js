@@ -2,7 +2,7 @@
  const {POManager} = require('../Rahul_pageobjects/POManager');
 
 
- test('@Web Client App login', async ({page})=>
+ test('@web Client App login', async ({page})=>
  {
    const poManager = new POManager(page);
     //js file- Login js, DashboardPage
