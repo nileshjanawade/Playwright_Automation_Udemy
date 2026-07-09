@@ -7,6 +7,7 @@ class LoginPage {
         this.signInButton = page.locator('#login');
         this.userName = page.locator('#userEmail');
         this.password = page.locator('#userPassword');
+        // this.page.locator('.card-body').waitForLoadState('networkidle');
     }
 
     async goto(){

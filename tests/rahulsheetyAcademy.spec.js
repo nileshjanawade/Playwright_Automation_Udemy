@@ -1,6 +1,7 @@
 const {test, expect} = require('@playwright/test');
 const { request } = require('node:http');
 
+
 test('Rahul Shetty Academy login test', async ({page}) => 
 {
 await page.goto('https://rahulshettyacademy.com/client/#/auth/login');
@@ -31,11 +32,11 @@ await page.locator('#login').click();
 // await page.locator('.card-body').waitForLoadState('networkidle');
 await page.locator('.card-body').first().waitFor();
 
-const titles = await page.locator('.card-body').allTextContents();
+const titles = await page.locator('.card-body b').allTextContents();
 console.log(titles);
 
-page.on('request',request=> console.log(request.url()));
-page.on('response', response=>console.log(response.url(), response.status()));
+// page.on('request',request=> console.log(request.url()));
+// page.on('response', response=>console.log(response.url(), response.status()));
 //ZARA Coat 3
 
 const count = await products.count();
@@ -50,6 +51,8 @@ for(let i =0 ; i< count; ++i)
         }
                
     }
+    const addCartSuccessMsg = await page.locator('.toast-bottom-right').textContent();
+        console.log(addCartSuccessMsg);
 
     await page.locator("[routerlink='/dashboard/cart']").click();
     await page.locator('div li').first().waitFor();

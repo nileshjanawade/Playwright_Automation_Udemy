@@ -26,6 +26,9 @@ Playwright-Automation/
 |-- tests/                # All test specs
 |   |-- UIBasicstest.spec.js
 |   |-- clientAppPO.spec.js
+|   |-- POManagerClientApp.spec.js
+|   |-- Rahul_clientAppPO.spec.js
+|   |-- TestdataClientApp.spec.js
 |   |-- rahulsheetyAcademy.spec.js
 |   |-- OtherRahulsheetyAcademy.spec.js
 |   |-- llc.spec.js
@@ -37,14 +40,28 @@ Playwright-Automation/
 |   |-- NetworkTest.spec.js
 |   |-- NetworkTest2.spec.js
 |   |-- upoad-download.spec.js
-|   `-- utils/            # Reusable utility/helper classes
-|       `-- APIUtils.js
 |-- pageobjects/          # Reusable UI page object classes
 |   |-- LoginPage.js
-|   `-- DashBoardPage.js
+|   |-- DashBoardPage.js
+|   |-- CartPage.js
+|   |-- OrdersReviewPage.js
+|   |-- OrdersHistoryPage.js
+|   `-- POManager.js
+|-- Rahul_pageobjects/    # Alternate full POM implementation from course practice
+|   |-- LoginPage.js
+|   |-- DashboardPage.js
+|   |-- CartPage.js
+|   |-- OrdersReviewPage.js
+|   |-- OrdersHistoryPage.js
+|   `-- POManager.js
+|-- utils/                # Reusable utility/helper classes and test data
+|   |-- APIUtils.js
+|   |-- test-base.js
+|   `-- placeOrderTestData.json
 |-- playwright-report/    # Generated HTML reports (gitignored)
 |-- test-results/         # Test artifacts / screenshots (gitignored)
 |-- playwright.config.js  # Playwright configuration
+|-- playwright.config1.js # Optional multi-project Playwright configuration
 |-- package.json
 `-- .gitignore
 ```
@@ -79,6 +96,11 @@ npx playwright test tests/UIBasicstest.spec.js
 # Run the Page Object Model e-commerce flow
 npx playwright test tests/clientAppPO.spec.js
 
+# Run the POManager and data-driven e-commerce flows
+npx playwright test tests/POManagerClientApp.spec.js
+npx playwright test tests/Rahul_clientAppPO.spec.js
+npx playwright test tests/TestdataClientApp.spec.js
+
 # Run API tests
 npx playwright test tests/webApiPart1.spec.js
 npx playwright test tests/RefactorWebAPI.spec.js
@@ -92,6 +114,9 @@ npx playwright test --browser=webkit
 
 # Run tests with UI mode
 npx playwright test --ui
+
+# Run tests with the optional multi-project config
+npx playwright test tests/OtherRahulsheetyAcademy.spec.js --config playwright.config1.js
 
 # Show the last HTML report
 npx playwright show-report
@@ -117,7 +142,9 @@ npx playwright show-report
 | **iFrames** - `page.frameLocator()` | `moreValidations.spec.js` |
 | **Calendar / Date Picker** - month, year, date navigation | `calender.spec.js` |
 | **End-to-End E-Commerce Flow** - login, product selection, cart, checkout, order verification | `rahulsheetyAcademy.spec.js`, `OtherRahulsheetyAcademy.spec.js` |
-| **UI Page Object Model (POM)** - reusable login and dashboard page classes for the e-commerce client app | `clientAppPO.spec.js`, `pageobjects/LoginPage.js`, `pageobjects/DashBoardPage.js` |
+| **UI Page Object Model (POM)** - reusable page classes for login, dashboard, cart, order review, and order history flows | `clientAppPO.spec.js`, `POManagerClientApp.spec.js`, `Rahul_clientAppPO.spec.js`, `pageobjects/`, `Rahul_pageobjects/` |
+| **POManager Pattern** - central page object factory for cleaner test setup | `POManagerClientApp.spec.js`, `pageobjects/POManager.js`, `Rahul_pageobjects/POManager.js` |
+| **Fixtures & Data-Driven Tests** - custom fixture data and JSON-driven order scenarios | `TestdataClientApp.spec.js`, `utils/test-base.js`, `utils/placeOrderTestData.json` |
 | **API Testing** - `request.newContext()`, `apiContext.post()`, token auth, order creation | `webApiPart1.spec.js` |
 | **Hooks & Token Injection** - `test.beforeAll`, `page.addInitScript()` for localStorage auth bypass | `webApiPart1.spec.js` |
 | **Storage State** - `browser.newContext()`, `context.storageState()` for auth state persistence | `WebApiPart2.spec.js` |
@@ -132,13 +159,14 @@ npx playwright show-report
 | **Full Page Screenshots** - `page.screenshot()` for full-page captures | `moreValidations.spec.js` |
 | **Visual Regression Testing** - `toMatchSnapshot()` for pixel comparison | `moreValidations.spec.js` |
 | **Screenshots & Traces** - automatic capture for debugging | `playwright.config.js` |
+| **Multi-Project Configuration** - browser projects, retries, workers, permissions, and HTTPS handling | `playwright.config1.js` |
 | **File Upload/Download with Excel** - `page.waitForEvent('download')`, `setInputFiles()`, Excel read/write with `exceljs` | `upoad-download.spec.js` |
 | **CI Integration** - GitHub Actions workflow | `.github/workflows/playwright.yml` |
 
 ### Planned Next Steps
 
-- Fixtures and data-driven tests
 - Parallel execution and sharding
+- Environment-based test credentials
 
 ---
 

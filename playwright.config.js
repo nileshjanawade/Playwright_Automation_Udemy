@@ -1,6 +1,5 @@
 // @ts-check
-import { defineConfig, devices } from '@playwright/test';
-import { trace } from 'node:console';
+const { devices } = require('@playwright/test');
 
 
 /**
@@ -8,6 +7,7 @@ import { trace } from 'node:console';
  */
 const config = ({
   testDir: './tests',
+  
   timeout: 40 * 1000,
     expect: {
           timeout: 40 * 1000,
@@ -17,8 +17,8 @@ const config = ({
 
     browserName: 'chromium',  
     headless: false ,
-    screenshot: 'on',
-    trace: 'on',
+    screenshot: 'on', // only-on-failure, off, on
+    trace: 'on',//off, on
 
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */

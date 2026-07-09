@@ -11,7 +11,9 @@ const {test,expect} = require('@playwright/test');
 
 // });
 
-test('Page Playwright test', async ({page}) =>
+
+//npx playwright test --grep @web
+test('@Web Page Playwright test', async ({page}) =>
 {
 
     const userName = page.locator('#username');
