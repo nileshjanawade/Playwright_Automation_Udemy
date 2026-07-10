@@ -1,0 +1,254 @@
+# Project Commands Reference
+
+This file explains the common commands used in this Playwright automation project.
+Each command includes what it does, why it is useful, and when to use it.
+
+---
+
+## Install TypeScript
+
+```powershell
+npm install --save-dev typescript
+```
+
+Alternative short form:
+
+```powershell
+npm install -D typescript
+```
+
+What:
+Installs TypeScript as a development dependency and adds it under `devDependencies` in `package.json`.
+
+Why:
+TypeScript lets you write `.ts` files and compile them to JavaScript. It also gives better type checking and editor suggestions.
+
+When:
+Use this once when you want to start writing or compiling TypeScript files in the project.
+
+Note:
+After installing locally, run the TypeScript compiler with:
+
+```powershell
+npx tsc demo1.ts
+```
+
+---
+
+## Check Node.js Version
+
+```powershell
+node -v
+```
+
+What:
+Prints the installed Node.js version.
+
+Why:
+Playwright, npm packages, and TypeScript require Node.js. Checking the version helps confirm your environment is ready.
+
+When:
+Use this before setup, after installing Node.js, or when troubleshooting npm/playwright command issues.
+
+---
+
+## Initialize a Playwright Project
+
+```powershell
+npm init playwright
+```
+
+What:
+Starts Playwright's project setup wizard.
+
+Why:
+It creates the basic Playwright project structure, config file, sample tests, and installs required packages.
+
+When:
+Use this only when creating a new Playwright project from scratch. Do not run it repeatedly in an existing configured project unless you intentionally want to regenerate setup files.
+
+---
+
+## Install Playwright Browsers
+
+```powershell
+npx playwright install
+```
+
+What:
+Downloads browser binaries used by Playwright, such as Chromium, Firefox, and WebKit.
+
+Why:
+Playwright needs its managed browsers to run tests consistently.
+
+When:
+Use this after installing Playwright dependencies, after cloning the repo on a new machine, or when Playwright says browser executables are missing.
+
+---
+
+## Run All Playwright Tests
+
+```powershell
+npx playwright test
+```
+
+What:
+Runs all test files found under the configured test directory.
+
+Why:
+This verifies the full automation suite.
+
+When:
+Use this before committing code, after major changes, or when you want a full regression run.
+
+---
+
+## Run One Test File in Debug Mode
+
+```powershell
+npx playwright test tests/clientAppPO.spec.js --debug
+```
+
+What:
+Runs only `tests/clientAppPO.spec.js` in Playwright debug mode.
+
+Why:
+Debug mode opens the browser headed, slows execution, and lets you inspect locators and steps.
+
+When:
+Use this when a specific test is failing or when you want to understand each browser action step by step.
+
+---
+
+## Run the Data-Driven Client App Test
+
+```powershell
+npx playwright test tests/TestdataClientApp.spec.js
+```
+
+What:
+Runs only the `TestdataClientApp.spec.js` test file.
+
+Why:
+This file uses test data from JSON/custom fixtures to run client app scenarios.
+
+When:
+Use this when working on data-driven tests, fixture logic, or the client app Page Object Model flow.
+
+---
+
+## Run Tests by Tag or Text
+
+```powershell
+npx playwright test --grep "@web"
+```
+
+What:
+Runs only tests whose title matches `@web`.
+
+Why:
+Tags let you run a selected group of tests instead of the whole suite.
+
+When:
+Use this when you want to run only web UI tests or any tests marked with `@web`.
+
+Important PowerShell note:
+Always put `@web` in quotes in PowerShell. Without quotes, PowerShell may parse `@web` incorrectly.
+
+Also, grep is case-sensitive. If the test title uses `@Web`, run:
+
+```powershell
+npx playwright test --grep "@Web"
+```
+
+---
+
+## Run a Test with a Specific Playwright Config
+
+```powershell
+npx playwright test tests/OtherRahulsheetyAcademy.spec.js --config playwright.config1.js
+```
+
+What:
+Runs `OtherRahulsheetyAcademy.spec.js` using `playwright.config1.js` instead of the default `playwright.config.js`.
+
+Why:
+Different config files can define different browsers, projects, retries, workers, screenshots, trace settings, and permissions.
+
+When:
+Use this when you want to test with the alternate project configuration.
+
+---
+
+## Run a Test with a Specific Config and Browser Project
+
+```powershell
+npx playwright test tests/moreValidations.spec.js --config playwright.config1.js --project=chrome
+```
+
+What:
+Runs `moreValidations.spec.js` using `playwright.config1.js` and only the `chrome` project defined inside that config.
+
+Why:
+When a config has multiple projects, such as `chrome` and `safari`, `--project` lets you choose one.
+
+When:
+Use this when you want to run a test only in one configured browser/project.
+
+---
+
+## Run the Excel Demo Script
+
+```powershell
+node ExcelDemo.js
+```
+
+What:
+Runs the `ExcelDemo.js` Node.js script.
+
+Why:
+This is useful for testing Excel read/write logic outside Playwright test execution.
+
+When:
+Use this when working on Excel upload/download or `exceljs` utility code.
+
+---
+
+## Disable TLS Certificate Validation for Current PowerShell Session
+
+```powershell
+$env:NODE_TLS_REJECT_UNAUTHORIZED="0"
+```
+
+What:
+Sets a Node.js environment variable for the current PowerShell session to ignore TLS/SSL certificate validation.
+
+Why:
+This can temporarily bypass certificate errors in restricted corporate networks or test environments.
+
+When:
+Use only for local troubleshooting when Node/npm requests fail because of certificate validation.
+
+Warning:
+This makes HTTPS connections less secure. Do not use it permanently or in production.
+
+---
+
+## Disable npm Strict SSL
+
+```powershell
+npm config set strict-ssl false
+```
+
+What:
+Tells npm not to strictly validate SSL certificates.
+
+Why:
+It can help npm install packages behind corporate proxies or SSL-inspection networks.
+
+When:
+Use only if npm install fails because of SSL certificate errors and your network requires this workaround.
+
+Warning:
+This reduces package download security. Prefer fixing the proper corporate certificate/proxy configuration when possible.
+
