@@ -9,8 +9,9 @@ class DashBoardPage {
     }
 
     async searchProductAddCart(productName) {
-
-
+       
+        // await this.products.waitFor({state: 'visible'});
+          await this.page.waitForTimeout(2000);
         const titles = await this.productsText.allTextContents();
         console.log(titles);
 
@@ -19,7 +20,7 @@ class DashBoardPage {
             if ((await this.products.nth(i).locator('b').textContent()).trim() === productName) {
                 //add cart
                 // await this.page.waitForTimeout(2000);
-                const addToCartBtn = this.products.nth(i).locator('text=Add To Cart');
+                const addToCartBtn = await this.products.nth(i).locator('text=Add To Cart');
                 // await addToCartBtn.waitFor({ state: 'visible' });
                 await addToCartBtn.click();
                 // await this.page.waitForTimeout(2000);

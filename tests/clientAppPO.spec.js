@@ -8,7 +8,6 @@ test('Rahul Shetty Academy login test', async ({ page }) => {
     const email = 'neel.janawade9@yopmail.com';
     const password = 'Neel@3694';
 
-
     const loginPage = new LoginPage(page);
     await loginPage.goto();
     await loginPage.validLogin(email, password);
@@ -17,8 +16,8 @@ test('Rahul Shetty Academy login test', async ({ page }) => {
     await dashbaord.searchProductAddCart(productName);
     await dashbaord.navigateToCart();
 
-    // await page.locator('div li').first().waitFor();
-    const bool = await page.locator("h3:has-text('ZARA COAT 3')").isVisible();
+    await page.locator('div li').first().waitFor();
+    const bool = await page.locator("h3:has-text('iphone 13 pro')").isVisible();
     expect(bool).toBeTruthy();
 
     await page.locator('text=Checkout').click();
@@ -56,8 +55,6 @@ test('Rahul Shetty Academy login test', async ({ page }) => {
     }
     const orderIdDetails = await page.locator('.col-text').textContent();
     expect(orderID.includes(orderIdDetails)).toBeTruthy();
-
-
 
     // await page.pause();
 

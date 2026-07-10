@@ -1,6 +1,15 @@
-class DashboardPage
+import {Locator,Page } from "@playwright/test"
+
+export class DashboardPage
 {
-constructor(page)
+   
+    products:Locator;
+    productsText:Locator;
+    cart:Locator;
+    orders:Locator;
+    page :Page;
+
+constructor(page:Page)
 {
     this.page = page;
     this.products = page.locator(".card-body");
@@ -10,8 +19,9 @@ constructor(page)
 
 }
 
-async searchProductAddCart(productName)
+async searchProductAddCart(productName:String)
 {
+    await this.page.waitForTimeout(2000);
     const titles= await this.productsText.allTextContents();
     console.log(titles);
     const count = await this.products.count();

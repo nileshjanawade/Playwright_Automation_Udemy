@@ -5,7 +5,7 @@ test('client login app', async ({ page }) => {
 
     const poManager = new POManager(page);
 
-    const productName = 'ZARA COAT 3';
+    const productName = 'ADIDAS ORIGINAL';
     const email = 'neel.janawade7@yopmail.com';
     const password = 'Neel@3694';
 
@@ -29,7 +29,7 @@ test('client login app', async ({ page }) => {
 
 
     await page.locator('div li').first().waitFor();
-    const bool = await page.locator("h3:has-text('ZARA COAT 3')").isVisible();
+    const bool = await page.locator("h3:has-text('ADIDAS ORIGINAL')").isVisible();
     expect(bool).toBeTruthy();
 
     await page.locator('text=Checkout').click();

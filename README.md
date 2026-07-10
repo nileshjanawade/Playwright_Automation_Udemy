@@ -10,7 +10,7 @@ A hands-on learning project exploring end-to-end test automation with [Playwrigh
 |---|---|
 | [Playwright](https://playwright.dev/) | ^1.61.0 |
 | [@playwright/test](https://www.npmjs.com/package/@playwright/test) | ^1.61.0 |
-| Language | JavaScript (CommonJS) |
+| Language | JavaScript / TypeScript |
 | Test Runner | Playwright Test |
 | CI | GitHub Actions |
 | Reporting | Playwright HTML Reporter, Allure Reporter |
@@ -28,6 +28,7 @@ Playwright-Automation/
 |   |-- clientAppPO.spec.js
 |   |-- POManagerClientApp.spec.js
 |   |-- Rahul_clientAppPO.spec.js
+|   |-- Rahul_clientAppPO.spec.ts
 |   |-- TestdataClientApp.spec.js
 |   |-- rahulsheetyAcademy.spec.js
 |   |-- OtherRahulsheetyAcademy.spec.js
@@ -54,10 +55,19 @@ Playwright-Automation/
 |   |-- OrdersReviewPage.js
 |   |-- OrdersHistoryPage.js
 |   `-- POManager.js
+|-- Rahul_pageobjects_ts/ # Alternate TypeScript POM implementation
+|   |-- LoginPage.ts
+|   |-- DashboardPage.ts
+|   |-- CartPage.ts
+|   |-- OrdersReviewPage.ts
+|   |-- OrdersHistoryPage.ts
+|   `-- POManager.ts
 |-- utils/                # Reusable utility/helper classes and test data
 |   |-- APIUtils.js
 |   |-- test-base.js
 |   `-- placeOrderTestData.json
+|-- utils_ts/             # TypeScript utility classes and test data
+|   `-- test-base.ts
 |-- playwright-report/    # Generated HTML reports (gitignored)
 |-- allure-results/       # Generated Allure result files (gitignored)
 |-- allure-report/        # Generated Allure HTML report (gitignored)
@@ -101,6 +111,7 @@ npx playwright test tests/clientAppPO.spec.js
 # Run the POManager and data-driven e-commerce flows
 npx playwright test tests/POManagerClientApp.spec.js
 npx playwright test tests/Rahul_clientAppPO.spec.js
+npx playwright test tests/Rahul_clientAppPO.spec.ts
 npx playwright test tests/TestdataClientApp.spec.js
 
 # Run API tests
