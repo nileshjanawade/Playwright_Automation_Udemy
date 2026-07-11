@@ -10,6 +10,7 @@ A hands-on learning project exploring end-to-end test automation with [Playwrigh
 |---|---|
 | [Playwright](https://playwright.dev/) | ^1.61.0 |
 | [@playwright/test](https://www.npmjs.com/package/@playwright/test) | ^1.61.0 |
+| [@cucumber/cucumber](https://www.npmjs.com/package/@cucumber/cucumber) | ^13.0.0 |
 | Language | JavaScript / TypeScript |
 | Test Runner | Playwright Test |
 | CI | GitHub Actions |
