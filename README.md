@@ -231,6 +231,10 @@ flowchart TD
 
 ## Reports & CI
 
+---
+
+**Repository Sync**: Merged remote updates and local changes on 2026-07-12; resolved a merge conflict in `commands` and updated Cucumber usage examples.
+
 - HTML reports are generated automatically in `playwright-report/`.
 - View the latest report with `npx playwright show-report`.
 - Allure result files are generated in `allure-results/` when tests run.
