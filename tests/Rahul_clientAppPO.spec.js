@@ -4,12 +4,14 @@
 
  test('@web Client App login', async ({page})=>
  {
-   const poManager = new POManager(page);
+   
     //js file- Login js, DashboardPage
      const username = "neel.janawade9@yopmail.com";
      const password = "Neel@3694"
-     const productName = 'Zara Coat 3';
+     const productName = 'ADIDAS ORIGINAL';
      const products = page.locator(".card-body");
+
+     const poManager = new POManager(page);
      const loginPage = poManager.getLoginPage();
      await loginPage.goTo();
      await loginPage.validLogin(username,password);

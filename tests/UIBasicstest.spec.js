@@ -1,15 +1,15 @@
 const {test,expect} = require('@playwright/test');
 
-test('Brower context Playwright test', async ({browser}) =>
-{
+// test('Brower context Playwright test', async ({browser}) =>
+// {
     
-  const context = await browser.newContext();
-  const page =await context.newPage();
-  await page.goto('https://mycampusforum.com/');
-  console.log(await page.title());
-//   expect(page).toHaveTitle("My Campus Forum — AI-Powered Alumni Network Platform");
+//   const context = await browser.newContext();
+//   const page =await context.newPage();
+//   await page.goto('https://mycampusforum.com/');
+//   console.log(await page.title());
+// //   expect(page).toHaveTitle("My Campus Forum — AI-Powered Alumni Network Platform");
 
-});
+// });
 
 
 //npx playwright test --grep @web
@@ -23,8 +23,8 @@ test('@web Page Playwright test', async ({page}) =>
 
     // page.route('**/*.css',route=> route.abort());
     // page.route('**/*.{jpg,png,jpeg}',route=> route.abort());
-  await page.goto('https://rahulshettyacademy.com/loginpagePractise/');
-  console.log(await page.title());
+   await page.goto('https://rahulshettyacademy.com/loginpagePractise/');
+   console.log(await page.title());
    await expect(page).toHaveTitle("LoginPage Practise | Rahul Shetty Academy");
    
    //css selector

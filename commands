@@ -251,3 +251,28 @@ Use only if npm install fails because of SSL certificate errors and your network
 
 Warning:
 This reduces package download security. Prefer fixing the proper corporate certificate/proxy configuration when possible.
+
+---
+
+## Cucumber Commands
+
+```powershell
+# Run Cucumber features (default formatter on console)
+npx cucumber-js
+
+# Run a single feature and generate an HTML report
+npx cucumber-js features/Ecommerce.feature --exit --format html:cucumber-report.html
+
+# Run with retry for flaky scenarios
+npx cucumber-js features/ErrorValidations.feature --retry 1 --exit --format html:cucumber-report.html
+
+# Run tagged scenarios
+npx cucumber-js --tags "@Validation" --exit
+
+# Run features in parallel (example)
+npx cucumber-js --parallel 2 --exit
+```
+
+Notes:
+- Use `--exit` to ensure Cucumber exits after the run in CI environments.
+- Adjust parallelism based on your machine and CI runner capabilities.
