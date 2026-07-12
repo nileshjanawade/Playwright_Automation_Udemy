@@ -1,5 +1,6 @@
 // @ts-check
 const { devices } = require('@playwright/test');
+const { setupPrimary } = require('node:cluster');
 
 
 /**
@@ -32,11 +33,11 @@ const config = ({
         browserName: 'chromium',
         headless: false,
         screenshot: 'on', // only-on-failure, off, on
-        // video : 'retain-on-failure',
+         video : 'retain-on-failure',
         ignoreHttpsErrors:true,
         permissions: ['geolocation'],
         trace: 'on',//off, on
-        // viewport : {width:720,height:720}
+         viewport : {width:720,height:720}
       }
     }
 
@@ -48,3 +49,18 @@ const config = ({
 
 module.exports = config
 //npx playwright test tests/OtherRahulsheetyAcademy.spec.js --config playwright.config1.js
+
+
+// allure report setup
+// npm i -D allure-playwright 
+
+// npx playwright test --grep "@Web" --reporter=line,allure-playwright
+
+// npm install -g allure-commandline
+
+// allure --version
+
+// allure generate ./allure-results --clean 
+// Report successfully generated to allure-repor
+
+// allure open .\allure-report\

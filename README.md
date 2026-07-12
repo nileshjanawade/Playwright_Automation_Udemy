@@ -103,6 +103,15 @@ npx playwright install
 # Run all tests
 npx playwright test
 
+# Run all regression tests (alias for full suite)
+npm run regression
+
+# Run only @Web tagged tests
+npm run webTests
+
+# Run Safari tests with the multi-project config
+npm run SafariNewConfig
+
 # Run a specific test file
 npx playwright test tests/UIBasicstest.spec.js
 
@@ -136,11 +145,12 @@ npx playwright test tests/OtherRahulsheetyAcademy.spec.js --config playwright.co
 npx playwright show-report
 
 # Generate and open an Allure report
-npx allure-commandline generate ./allure-results --clean
-npx allure-commandline open ./allure-report
+npx playwright test --grep "@Web" --reporter=line,allure-playwright
+allure generate ./allure-results --clean
+allure open ./allure-report
 ```
 
-> Note: The config currently defaults to Chromium with `headless: false`. Screenshots are captured with `screenshot: 'on'`, and traces are captured with `trace: 'on'`.
+> Note: The config currently defaults to Chromium with `headless: false`. Screenshots are captured with `screenshot: 'on'`, video is recorded with `video: 'retain-on-failure'`, traces are captured with `trace: 'on'`, and viewport is set to `720x720`.
 
 ---
 
