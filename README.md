@@ -144,8 +144,13 @@ npx playwright test tests/OtherRahulsheetyAcademy.spec.js --config playwright.co
 # Show the last HTML report
 npx playwright show-report
 
-# Generate and open an Allure report
+# Run only @Web tagged tests
 npx playwright test --grep "@Web" --reporter=line,allure-playwright
+
+# Run only @nil tagged tests
+npx playwright test --grep "@nil" --reporter=line,allure-playwright
+
+# Generate and open an Allure report
 allure generate ./allure-results --clean
 allure open ./allure-report
 ```
