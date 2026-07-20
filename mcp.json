@@ -1,0 +1,29 @@
+{
+  "name": "Playwright_Automation_Udemy",
+  "version": "1.0.0",
+  "entrypoint": "playwright.config.js",
+  "commands": {
+    "run": "npx playwright test",
+    "run:web": "npx playwright test --grep \"@Web\"",
+    "run:nil": "npx playwright test --grep \"@nil\"",
+    "report:allure": "allure generate ./allure-results --clean && allure open ./allure-report"
+  },
+  "files": [
+    "tests/**",
+    "pageobjects/**",
+    "playwright.config.js",
+    "package.json"
+  ],
+  "env": {
+    "NODE_ENV": "test"
+  },
+  "mcpServers": {
+    "playwright": {
+      "command": "npx",
+      "args": [
+        "@playwright/mcp@latest"
+      ]
+    }
+  },
+  "notes": "MCP consumer can use entrypoint and commands to run tests and produce reports."
+}

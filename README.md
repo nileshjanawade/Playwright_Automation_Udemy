@@ -26,6 +26,7 @@ Playwright-Automation/
 |   `-- playwright.yml
 |-- tests/                # All test specs
 |   |-- UIBasicstest.spec.js
+|   |-- loginpagePractise.spec.js
 |   |-- clientAppPO.spec.js
 |   |-- POManagerClientApp.spec.js
 |   |-- Rahul_clientAppPO.spec.js
@@ -44,6 +45,7 @@ Playwright-Automation/
 |   |-- upoad-download.spec.js
 |-- pageobjects/          # Reusable UI page object classes
 |   |-- LoginPage.js
+|   |-- LoginPagePractisePage.js
 |   |-- DashBoardPage.js
 |   |-- CartPage.js
 |   |-- OrdersReviewPage.js
@@ -115,6 +117,9 @@ npm run SafariNewConfig
 # Run a specific test file
 npx playwright test tests/UIBasicstest.spec.js
 
+# Run the practice login flow
+npx playwright test tests/loginpagePractise.spec.js
+
 # Run the Page Object Model e-commerce flow
 npx playwright test tests/clientAppPO.spec.js
 
@@ -155,7 +160,26 @@ allure generate ./allure-results --clean
 allure open ./allure-report
 ```
 
+## MCP metadata
+This repository includes an `mcp.json` file at the repository root which provides metadata and convenient commands for automation consumers.
+
+- Run all tests: `npx playwright test`
+- Run `@nil` tests: `npx playwright test --grep "@nil"` or `npm run test:nil`
+
+See [mcp.json](mcp.json) for the available `commands` and `files` globs.
+
 > Note: The config currently defaults to Chromium with `headless: false`. Screenshots are captured with `screenshot: 'on'`, video is recorded with `video: 'retain-on-failure'`, traces are captured with `trace: 'on'`, and viewport is set to `720x720`.
+
+### Run a local MCP server
+You can run a small local MCP server that serves `mcp.json` and exposes the `commands` object at `/commands`:
+
+```bash
+# from the repository root
+npm run start:mcp
+# or: node mcp-server.js
+
+# open http://localhost:3000/mcp.json or http://localhost:3000/commands
+```
 
 ---
 
@@ -176,6 +200,7 @@ allure open ./allure-report
 | **Calendar / Date Picker** - month, year, date navigation | `calender.spec.js` |
 | **End-to-End E-Commerce Flow** - login, product selection, cart, checkout, order verification | `rahulsheetyAcademy.spec.js`, `OtherRahulsheetyAcademy.spec.js` |
 | **UI Page Object Model (POM)** - reusable page classes for login, dashboard, cart, order review, and order history flows | `clientAppPO.spec.js`, `POManagerClientApp.spec.js`, `Rahul_clientAppPO.spec.js`, `pageobjects/`, `Rahul_pageobjects/` |
+| **Practice Login Flow** - login to the shop page and verify the iPhone X product using a dedicated page object | `tests/loginpagePractise.spec.js`, `pageobjects/LoginPagePractisePage.js` |
 | **POManager Pattern** - central page object factory for cleaner test setup | `POManagerClientApp.spec.js`, `pageobjects/POManager.js`, `Rahul_pageobjects/POManager.js` |
 | **Fixtures & Data-Driven Tests** - custom fixture data and JSON-driven order scenarios | `TestdataClientApp.spec.js`, `utils/test-base.js`, `utils/placeOrderTestData.json` |
 | **API Testing** - `request.newContext()`, `apiContext.post()`, token auth, order creation | `webApiPart1.spec.js` |

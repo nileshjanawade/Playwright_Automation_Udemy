@@ -4,8 +4,13 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "test": "npx playwright test",
     "regression": "npx playwright test",
-    "webTests" : " npx playwright test --grep @Web",
+    "webTests" : "npx playwright test --grep @Web",
+    "test:web": "npx playwright test --grep \"@Web\"",
+    "test:nil": "npx playwright test --grep \"@nil\"",
+    "report:allure": "allure generate ./allure-results --clean && allure open ./allure-report",
+    "start:mcp": "node mcp-server.js",
     "SafariNewConfig" : "npx playwright test --config playwright.config1.js --project=safari"
   },
   "keywords": [],
