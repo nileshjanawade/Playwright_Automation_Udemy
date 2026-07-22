@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "npx playwright test",
+    "test:ui-basic": "npx playwright test ./tests/UIBasicstest.spec.js",
     "regression": "npx playwright test",
     "webTests" : "npx playwright test --grep @Web",
     "test:web": "npx playwright test --grep \"@Web\"",

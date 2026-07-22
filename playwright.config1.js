@@ -23,7 +23,7 @@ const config = ({
         headless: false,
         screenshot: 'off', // only-on-failure, off, on
         trace: 'on',//off, on
-      //  ...devices['iPhone 17'],
+      //  ...devices['iPhone 17 Pro'],
       }
 
     },

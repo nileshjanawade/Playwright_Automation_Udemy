@@ -19,7 +19,7 @@ test('@web Page Playwright test', async ({page}) =>
     const userName = page.locator('#username');
     const password = page.locator('input[name="password"]');
     const signInButton = page.locator('#signInBtn');
-    const cardTitles = page.locator('.card-body a');
+    // const cardTitles = page.locator('.card-body a');
 
     // page.route('**/*.css',route=> route.abort());
     // page.route('**/*.{jpg,png,jpeg}',route=> route.abort());
@@ -37,8 +37,8 @@ test('@web Page Playwright test', async ({page}) =>
    await expect(page.locator('[style*="block"]')).toContainText('Incorrect');
    
    //type - fill
-   await userName.fill('');
-   await userName.type('rahulshettyacademy');
+//    await userName.fill('');
+   await userName.fill('rahulshettyacademy');
    await signInButton.click();
   
    //extract error of old password 
@@ -46,15 +46,16 @@ test('@web Page Playwright test', async ({page}) =>
    console.log(await page.locator('.alert.alert-danger.col-md-12').textContent());
 
    //type - fill
-   await password.fill('');
-   await password.type('Learning@830$3mK2');
+//    await password.fill('');
+   await password.fill('Learning@830$3mK2');
    await signInButton.click();
 
 //    console.log(await page.locator(".card-body a").textContent());
 //    console.log(await cardTitles.first().textContent());
 //    console .log(await cardTitles.nth(1).textContent());
-   const allCardTitles = await cardTitles.allTextContents();
-   console.log(allCardTitles);
+
+//    const allCardTitles = await cardTitles.allTextContents();
+//    console.log(allCardTitles);
 });
 
 test('UI Controls', async ({page}) => 
@@ -123,3 +124,18 @@ test('Child window handling', async ({browser}) =>
 
      //await page.pause();
 });
+
+test.only('Login funcationality', async({page})=>
+{
+    const userName = page.locator('#username');
+    const password = page.locator('input[name="password"]');
+    const signInButton = page.locator('#signInBtn');
+
+  await page.goto('https://rahulshettyacademy.com/loginpagePractise/');
+
+  await userName.fill('rahulshettyacademy');
+  await password.fill('Learning@830$3mK2');
+  await signInButton.click();
+
+//   await page.pause();
+})

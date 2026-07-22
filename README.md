@@ -114,11 +114,14 @@ npm run webTests
 # Run Safari tests with the multi-project config
 npm run SafariNewConfig
 
+# Run the UI basic spec (verified command)
+npm run test:ui-basic
+
 # Run a specific test file
-npx playwright test tests/UIBasicstest.spec.js
+npx playwright test ./tests/UIBasicstest.spec.js
 
 # Run the practice login flow
-npx playwright test tests/loginpagePractise.spec.js
+npx playwright test ./tests/loginpagePractise.spec.js
 
 # Run the Page Object Model e-commerce flow
 npx playwright test tests/clientAppPO.spec.js
@@ -242,8 +245,10 @@ If Playwright shows `Error: No tests found`, check that:
 Example:
 
 ```bash
-npx playwright test tests/webApiPart1.spec.js
+npx playwright test ./tests/webApiPart1.spec.js
 ```
+
+If you are running on Windows and see `Error: No tests found`, use a forward-slash path such as `./tests/UIBasicstest.spec.js` or the npm script `npm run test:ui-basic`.
 
 An empty file like `tests/calender.spec.js` will be discovered by name, but Playwright will still report no tests because there is no test case inside it.
 
